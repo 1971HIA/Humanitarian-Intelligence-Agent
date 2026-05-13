@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: humanitarian-intelligence-agent
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: PUBLIC_BASE_URL
+        sync: false
+      - key: DAILY_CHAT_ID
+        sync: false
+      - key: DAILY_BRIEF_HOUR_UTC
+        value: "6"
